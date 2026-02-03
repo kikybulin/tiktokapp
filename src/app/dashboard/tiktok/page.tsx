@@ -29,20 +29,20 @@ export default async function TikTokDashboardPage({
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Connect account</h1>
-        <p className="text-muted-foreground">
-          Link your account to show profile and content in the dashboard.
+        <h1 className="text-2xl font-bold tracking-tight">Hubungkan akun</h1>
+        <p className="text-muted-foreground mt-1">
+          Hubungkan akun Anda untuk menampilkan profil dan konten di dashboard.
         </p>
       </div>
 
       {params.connected && (
-        <div className="rounded-md bg-green-500/10 text-green-600 dark:text-green-400 px-4 py-2 text-sm">
-          Account connected successfully.
+        <div className="rounded-lg bg-green-500/10 text-green-700 dark:text-green-400 px-4 py-3 text-sm border border-green-500/20" role="status">
+          <strong>Berhasil.</strong> Akun sudah terhubung. Anda bisa melihat status di bawah.
         </div>
       )}
       {params.error && (
-        <div className="rounded-md bg-destructive/10 text-destructive px-4 py-2 text-sm">
-          Error: {params.error}
+        <div className="rounded-lg bg-destructive/10 text-destructive px-4 py-3 text-sm border border-destructive/20" role="alert">
+          <strong>Terjadi kesalahan:</strong> {params.error}
         </div>
       )}
 
@@ -54,22 +54,20 @@ export default async function TikTokDashboardPage({
       />
 
       {connection && (
-        <Card>
+        <Card className="border bg-card">
           <CardHeader>
-            <CardTitle>Profile / videos</CardTitle>
-            <CardDescription>
-              After app approval and with valid scopes, real profile and video list will load here.
-              Until then, a placeholder is shown.
+            <CardTitle className="text-lg">Profil &amp; video</CardTitle>
+            <CardDescription className="leading-relaxed">
+              Setelah app disetujui dan scope aktif, profil dan daftar video asli akan dimuat di sini.
+              Sementara ini yang tampil adalah placeholder.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="rounded border bg-muted/50 p-4 font-mono text-sm">
-              <p className="text-muted-foreground">Status: connected</p>
-              <p className="text-muted-foreground mt-1">
-                Scope: {connection.scope ?? "—"}
-              </p>
-              <p className="text-muted-foreground mt-2">
-                Fetch profile / list videos will be active after the app is approved and scopes are set.
+            <div className="rounded-lg border bg-muted/30 p-4 text-sm space-y-2">
+              <p><span className="text-muted-foreground">Status:</span> <strong>Terhubung</strong></p>
+              <p><span className="text-muted-foreground">Scope:</span> {connection.scope ?? "—"}</p>
+              <p className="text-muted-foreground pt-2">
+                Fitur ambil profil dan daftar video akan aktif setelah app disetujui dan scope dikonfigurasi.
               </p>
             </div>
           </CardContent>

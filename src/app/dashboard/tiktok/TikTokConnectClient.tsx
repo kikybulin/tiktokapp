@@ -23,29 +23,31 @@ export function TikTokConnectClient({ connected, authorizeUrl, mockMode, hasToke
   }
 
   return (
-    <Card>
+    <Card className="border bg-card">
       <CardHeader>
-        <CardTitle>Account connection</CardTitle>
-        <CardDescription>
+        <CardTitle className="text-lg">Koneksi akun</CardTitle>
+        <CardDescription className="leading-relaxed">
           {connected
-            ? "Your account is linked. You can disconnect and reconnect below if needed."
-            : "Connect your account to enable profile and content in the dashboard."}
+            ? "Akun Anda sudah terhubung. Anda bisa hubungkan ulang di bawah jika perlu."
+            : "Hubungkan akun Anda untuk menampilkan profil dan konten di dashboard."}
           {mockMode && (
-            <span className="block mt-2 text-amber-600 dark:text-amber-400">
-              Mock mode is on: OAuth redirect and token exchange are simulated for demo.
+            <span className="block mt-2 text-amber-700 dark:text-amber-400 text-sm">
+              Mode demo: redirect dan token disimulasikan untuk keperluan demo.
             </span>
           )}
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <p className="text-sm font-medium mb-2">
-          Status: {connected || hasToken ? "Connected" : "Not connected"}
+      <CardContent className="space-y-4">
+        <p className="text-sm">
+          <span className="text-muted-foreground">Status:</span>{" "}
+          <strong>{connected || hasToken ? "Terhubung" : "Belum terhubung"}</strong>
         </p>
         <Button
           onClick={handleConnect}
           variant={connected ? "outline" : "default"}
+          size="lg"
         >
-          {connected ? "Reconnect account" : "Connect TikTok Account (Sandbox)"}
+          {connected ? "Hubungkan ulang" : "Connect TikTok Account (Sandbox)"}
         </Button>
       </CardContent>
     </Card>

@@ -13,34 +13,41 @@ export default function DashboardPage() {
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground">Manage your content workflow from here.</p>
+        <p className="text-muted-foreground mt-1">
+          Kelola workflow konten Anda dari sini. Hubungkan akun untuk memulai.
+        </p>
       </div>
 
-      <Card>
+      <Card className="border bg-card">
         <CardHeader>
-          <CardTitle>Project overview</CardTitle>
-          <CardDescription>
-            ClipDash is a web app for creators and brands to manage their content in one place.
-            You can connect your video platform account to see profile and content data in this dashboard.
+          <CardTitle className="text-lg">Tentang ClipDash</CardTitle>
+          <CardDescription className="leading-relaxed">
+            ClipDash membantu creator dan brand mengelola konten dalam satu tempat.
+            Hubungkan akun video Anda untuk melihat profil dan daftar konten di dashboard ini.
           </CardDescription>
         </CardHeader>
       </Card>
 
-      <Card>
+      <Card className="border bg-card">
         <CardHeader>
-          <CardTitle>TikTok integration demo flow</CardTitle>
-          <CardDescription>Step-by-step: connect your account and see the flow end-to-end.</CardDescription>
+          <CardTitle className="text-lg">Langkah menghubungkan akun</CardTitle>
+          <CardDescription>
+            Ikuti langkah berikut untuk demo integrasi dari awal sampai selesai.
+          </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
-            <li>Go to Connect account.</li>
-            <li>Click &quot;Connect TikTok Account (Sandbox)&quot;.</li>
-            <li>Authorize on the platform consent screen (or see mock flow if app is not yet approved).</li>
-            <li>You are redirected back; status shows &quot;connected&quot;.</li>
-            <li>Profile and video list can be loaded (mock until app is approved).</li>
+        <CardContent className="space-y-5">
+          <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground leading-relaxed">
+            <li>Klik tombol di bawah untuk membuka halaman &quot;Hubungkan akun&quot;.</li>
+            <li>Klik &quot;Connect TikTok Account (Sandbox)&quot;.</li>
+            <li>Setujui di layar consent platform (atau lihat alur mock jika app belum disetujui).</li>
+            <li>Anda akan diarahkan kembali; status akan tampil &quot;connected&quot;.</li>
+            <li>Profil dan daftar video dapat dimuat (mock sampai app disetujui).</li>
           </ol>
-          <Link href="/dashboard/tiktok" className={cn(buttonVariants())}>
-            Connect TikTok Account (Sandbox)
+          <Link
+            href="/dashboard/tiktok"
+            className={cn(buttonVariants({ size: "lg" }), "inline-flex")}
+          >
+            Hubungkan akun TikTok (Sandbox)
           </Link>
         </CardContent>
       </Card>

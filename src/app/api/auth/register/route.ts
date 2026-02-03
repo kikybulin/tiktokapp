@@ -22,7 +22,7 @@ export async function POST(req: Request) {
     const { username, password } = parsed.data;
     const existing = await prisma.user.findUnique({ where: { username } });
     if (existing) {
-      return NextResponse.json({ error: "Username already taken" }, { status: 409 });
+      return NextResponse.json({ error: "Username ini sudah dipakai. Pilih username lain." }, { status: 409 });
     }
     const hash = await bcrypt.hash(password, 10);
     await prisma.user.create({

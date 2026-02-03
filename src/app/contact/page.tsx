@@ -15,44 +15,45 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="container py-12 max-w-md">
-      <h1 className="text-3xl font-bold tracking-tight mb-2">Contact</h1>
-      <p className="text-muted-foreground mb-8">
-        Send us a message and we&apos;ll get back to you.
+    <div className="container py-12 px-4 max-w-md">
+      <h1 className="text-2xl font-bold tracking-tight">Kontak</h1>
+      <p className="text-muted-foreground mt-1 mb-8">
+        Kirim pesan dan kami akan membalas secepatnya.
       </p>
-      <Card>
-        <CardHeader>
-          <CardTitle>Get in touch</CardTitle>
+      <Card className="shadow-sm">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-lg">Hubungi kami</CardTitle>
           <CardDescription>
-            You can also email support at support@clipdash.example (replace with your domain).
+            Atau email ke support@clipdash.example (ganti dengan domain Anda).
           </CardDescription>
         </CardHeader>
         <CardContent>
           {sent ? (
-            <p className="text-sm text-muted-foreground">
-              Thanks! Your message has been sent. We&apos;ll respond as soon as we can.
-            </p>
+            <div className="rounded-lg bg-green-500/10 text-green-700 dark:text-green-400 px-4 py-3 text-sm border border-green-500/20">
+              <p className="font-medium">Pesan terkirim.</p>
+              <p className="text-muted-foreground mt-1">Kami akan membalas segera.</p>
+            </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" name="name" placeholder="Your name" className="mt-1" />
+              <div className="space-y-2">
+                <Label htmlFor="name">Nama</Label>
+                <Input id="name" name="name" placeholder="Nama Anda" className="mt-1" />
               </div>
-              <div>
+              <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" placeholder="you@example.com" className="mt-1" />
+                <Input id="email" name="email" type="email" placeholder="email@contoh.com" className="mt-1" required />
               </div>
-              <div>
-                <Label htmlFor="message">Message</Label>
+              <div className="space-y-2">
+                <Label htmlFor="message">Pesan</Label>
                 <textarea
                   id="message"
                   name="message"
                   rows={4}
-                  placeholder="Your message"
-                  className="mt-1 flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[80px]"
+                  placeholder="Tulis pesan Anda..."
+                  className="mt-1 flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-h-[100px]"
                 />
               </div>
-              <Button type="submit">Send message</Button>
+              <Button type="submit" className="w-full sm:w-auto">Kirim pesan</Button>
             </form>
           )}
         </CardContent>
