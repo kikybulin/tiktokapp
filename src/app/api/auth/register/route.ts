@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { registerSchema } from "@/lib/validations";
 
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     if (existing) {
       return NextResponse.json({ error: "Username ini sudah dipakai. Pilih username lain." }, { status: 409 });
     }
-    const hash = await bcrypt.hash(password, 10);
+    const hash = bcrypt.hashSync(password, 10);
     await prisma.user.create({
       data: { username, password: hash },
     });
