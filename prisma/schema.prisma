@@ -1,0 +1,30 @@
+// Prisma schema - connection URL in prisma.config.ts (Prisma 7)
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tiktok    TiktokConnection?
+}
+
+model TiktokConnection {
+  id           String   @id @default(cuid())
+  userId       String   @unique
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken  String
+  refreshToken String?
+  expiresAt    DateTime?
+  scope        String?
+  openId       String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
