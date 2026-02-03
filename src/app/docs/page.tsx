@@ -24,6 +24,34 @@ export default function DocsPage() {
         </section>
 
         <section>
+          <h2 className="text-xl font-semibold mb-2">Login Kit for Desktop (PKCE)</h2>
+          <p className="text-muted-foreground mb-2">
+            For desktop apps, use PKCE and a localhost redirect URI. Register the redirect URI in your app&apos;s <strong>Login Kit</strong> product configuration on TikTok for Developers.
+          </p>
+
+          <h3 className="text-sm font-semibold mt-4 mb-2">Redirect URI rules (TikTok)</h3>
+          <ul className="list-disc list-inside text-muted-foreground space-y-1 text-sm mb-3">
+            <li>Max 10 URIs per app; each &lt; 512 characters.</li>
+            <li>Absolute URI only: <code className="bg-muted px-1 rounded">http://</code> or <code className="bg-muted px-1 rounded">https://</code>. No query or fragment.</li>
+            <li>Host: only <code className="bg-muted px-1 rounded">localhost</code> or <code className="bg-muted px-1 rounded">127.0.0.1</code>.</li>
+            <li>Port required. Wildcard <code className="bg-muted px-1 rounded">*</code> is supported (e.g. <code className="bg-muted px-1 rounded">http://127.0.0.1:*/callback/</code>).</li>
+          </ul>
+          <p className="text-muted-foreground text-sm mb-2">Contoh valid:</p>
+          <ul className="list-disc list-inside text-muted-foreground text-sm mb-3 font-mono">
+            <li>http://localhost:3455/callback/</li>
+            <li>http://127.0.0.1:*/callback/</li>
+            <li>https://127.0.0.1:3455/callback/</li>
+          </ul>
+
+          <h3 className="text-sm font-semibold mt-4 mb-2">Flow</h3>
+          <ul className="list-disc list-inside text-muted-foreground space-y-1 text-sm">
+            <li><strong>GET</strong> <code className="bg-muted px-1 rounded">/api/tiktok/authorize-desktop?redirect_uri=http://localhost:3455/callback/</code> → returns <code className="bg-muted px-1 rounded">{"{ url, state }"}</code>. Open <code>url</code> in the browser.</li>
+            <li>User authorizes; TikTok redirects to your redirect_uri with <code>code</code> and <code>state</code>.</li>
+            <li><strong>POST</strong> <code className="bg-muted px-1 rounded">/api/tiktok/exchange</code> with body <code className="bg-muted px-1 rounded">{"{ code, state, redirect_uri }"}</code> (same redirect_uri as in step 1) → returns access token.</li>
+          </ul>
+        </section>
+
+        <section>
           <h2 className="text-xl font-semibold mb-2">Scopes</h2>
           <p className="text-muted-foreground mb-2">
             We request only the permissions needed for the dashboard. See the full list and explanations:
