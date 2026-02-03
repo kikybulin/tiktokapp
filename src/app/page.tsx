@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const APP_NAME = "ClipDash";
 
@@ -17,12 +18,12 @@ export default function HomePage() {
             Connect your accounts and get a clear view of your pipeline.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg">
-              <Link href="/register">Get started free</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/docs">See how it works</Link>
-            </Button>
+            <Link href="/register" className={cn(buttonVariants({ size: "lg" }))}>
+              Get started free
+            </Link>
+            <Link href="/docs" className={cn(buttonVariants({ variant: "outline", size: "lg" }))}>
+              See how it works
+            </Link>
           </div>
         </div>
       </section>

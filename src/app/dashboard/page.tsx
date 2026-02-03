@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const metadata = {
@@ -38,9 +39,9 @@ export default function DashboardPage() {
             <li>You are redirected back; status shows &quot;connected&quot;.</li>
             <li>Profile and video list can be loaded (mock until app is approved).</li>
           </ol>
-          <Button asChild>
-            <Link href="/dashboard/tiktok">Connect TikTok Account (Sandbox)</Link>
-          </Button>
+          <Link href="/dashboard/tiktok" className={cn(buttonVariants())}>
+            Connect TikTok Account (Sandbox)
+          </Link>
         </CardContent>
       </Card>
     </div>
