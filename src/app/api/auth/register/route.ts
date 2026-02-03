@@ -8,8 +8,14 @@ export async function POST(req: Request) {
     const body = await req.json();
     const parsed = registerSchema.safeParse(body);
     if (!parsed.success) {
+      const fieldErrors: Record<string, string[]> = {};
+      for (const issue of parsed.error.issues) {
+        const path = issue.path.join(".");
+        if (!fieldErrors[path]) fieldErrors[path] = [];
+        fieldErrors[path].push(issue.message);
+      }
       return NextResponse.json(
-        { error: parsed.error.flatten().fieldErrors },
+        { error: Object.keys(fieldErrors).length ? fieldErrors : "Validation failed" },
         { status: 400 }
       );
     }
@@ -23,7 +29,7 @@ export async function POST(req: Request) {
       data: { username, password: hash },
     });
     return NextResponse.json({ success: true });
-  } catch (e) {
+  } catch {
     return NextResponse.json({ error: "Registration failed" }, { status: 500 });
   }
 }
